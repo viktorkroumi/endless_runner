@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
         MoveToLane();
     }
 
