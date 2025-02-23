@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 2f;
-    public float laneDistance = 4f;
-    public float jumpForce = 5f;
+    public float speed = 10f;
+    public float laneDistance = 3f;
+    public float jumpForce = 7f;
 
     private int currentLane = 1;
 
