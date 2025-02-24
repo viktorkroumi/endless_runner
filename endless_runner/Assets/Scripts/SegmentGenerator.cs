@@ -5,9 +5,9 @@ using UnityEngine;
 public class SegmentGenerator : MonoBehaviour
 {
     public GameObject[] segment;
-    [SerializeField] int zPos = 50;
-    [SerializeField] bool creatingSegment = false;
-    [SerializeField] int segmentNum;
+    private int zPos = 50;
+    private bool creatingSegment = false;
+    private int segmentNum;
 
 
     void Update()
@@ -22,7 +22,7 @@ public class SegmentGenerator : MonoBehaviour
 
     IEnumerator SegmentGen()
     {
-        segmentNum = Random.Range(0, 3);
+        segmentNum = Random.Range(0, 5);
         Instantiate(segment[segmentNum], new Vector3(0, 0, zPos), Quaternion.identity);
         zPos += 50;
         yield return new WaitForSeconds(3);
