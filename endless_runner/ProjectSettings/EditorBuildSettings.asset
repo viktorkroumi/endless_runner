@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: 3bc0844576a4be64e9897405d898b74d
+  - enabled: 1
+    path: Assets/Scenes/StopMenu.unity
+    guid: 163123e2d3096154fb2f4e115c31bcac
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
