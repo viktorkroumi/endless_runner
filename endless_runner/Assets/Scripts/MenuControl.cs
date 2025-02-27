@@ -3,9 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuControl : MonoBehaviour
 {
+    public GameObject pausePanel;
+
     public void StartGame()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
 
     public void Shop()
@@ -20,6 +23,13 @@ public class MenuControl : MonoBehaviour
 
     public void Stop()
     {
-        SceneManager.LoadScene(3);
+        pausePanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void Resume()
+    {
+        pausePanel.SetActive(false);
+        Time.timeScale = 1;
     }
 }
