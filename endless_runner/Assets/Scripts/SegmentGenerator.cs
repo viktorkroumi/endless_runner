@@ -9,6 +9,12 @@ public class SegmentGenerator : MonoBehaviour
     private bool creatingSegment = false;
     private int segmentNum;
 
+    void Start()
+    {
+        segmentNum = Random.Range(0, 5);
+        Instantiate(segment[segmentNum], new Vector3(0, 0, zPosition), Quaternion.identity);
+        zPosition += 50;
+    }
 
     void Update()
     {

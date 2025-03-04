@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        speed += 0.1f * Time.deltaTime;
 
         Move();
     }
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //https://stackoverflow.com/questions/65488572/how-do-i-limit-a-gameobject-to-jump-only-once
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
