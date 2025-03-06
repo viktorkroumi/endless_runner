@@ -7,7 +7,8 @@ public class ScoreCount : MonoBehaviour
 {
     public float distance;
     public Transform player;
-    public TextMeshProUGUI score;
+    public TextMeshProUGUI scoreInGame;
+    public static float score;
 
     void Start()
     {
@@ -18,7 +19,7 @@ public class ScoreCount : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(player.position, transform.position);
-        distance = MathF.Round(distance); /*https://discussions.unity.com/t/how-to-round-a-float/574796*/
-        score.text = distance.ToString();
+        score = MathF.Round(distance); /*https://discussions.unity.com/t/how-to-round-a-float/574796*/
+        scoreInGame.text = score.ToString();
     }
 }

@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -5,10 +6,19 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 12f;
     public float laneDistance = 3f;
+    public float laneSwitchSpeed = 10f;
     public float jumpForce = 5f;
 
     private int currentLane = 1;
     private bool isGrounded = true;
+    private Rigidbody rb;
+    private Vector3 targetPosition;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        targetPosition = transform.position;
+    }
 
     void Update()
     {
@@ -36,9 +46,9 @@ public class PlayerMovement : MonoBehaviour
                 transform.position += new Vector3(-laneDistance, 0, 0);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded || Input.GetKeyDown(KeyCode.UpArrow) && isGrounded || Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)))
         {
-            GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
     }
