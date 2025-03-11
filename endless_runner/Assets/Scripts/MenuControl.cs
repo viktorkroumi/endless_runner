@@ -22,6 +22,7 @@ public class MenuControl : MonoBehaviour
     }
 
     //https://discussions.unity.com/t/how-to-pause-and-resume-the-game/94643/3
+
     public void Stop()
     {
         pausePanel.SetActive(true);

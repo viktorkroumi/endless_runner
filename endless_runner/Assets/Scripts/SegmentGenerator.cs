@@ -11,7 +11,7 @@ public class SegmentGenerator : MonoBehaviour
 
     void Start()
     {
-        segmentNum = Random.Range(0, 5);
+        segmentNum = Random.Range(0, 8);
         Instantiate(segment[segmentNum], new Vector3(0, 0, zPosition), Quaternion.identity);
         zPosition += 50;
     }
@@ -23,15 +23,14 @@ public class SegmentGenerator : MonoBehaviour
             creatingSegment = true;
             StartCoroutine(SegmentGen());
         }
-
     }
 
     IEnumerator SegmentGen()
     {
-        segmentNum = Random.Range(0, 5);
+        segmentNum = Random.Range(0, 8);
         Instantiate(segment[segmentNum], new Vector3(0, 0, zPosition), Quaternion.identity);
         zPosition += 50;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         creatingSegment = false;
     }
 }

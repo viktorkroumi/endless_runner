@@ -1,12 +1,10 @@
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 12f;
     public float laneDistance = 3f;
-    public float laneSwitchSpeed = 10f;
+    public float laneSwitchSpeed = 12f;
     public float jumpForce = 5f;
 
     private int currentLane = 1;
@@ -17,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        targetPosition = transform.position;
+        targetPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
     void Update()
@@ -26,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         speed += 0.1f * Time.deltaTime;
 
         Move();
+        MoveToTargetPosition();
     }
 
     void Move() 
@@ -35,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
             if (currentLane < 2)
             {
                 currentLane++;
-                transform.position += new Vector3(laneDistance, 0, 0);
+                targetPosition = new Vector3(currentLane * laneDistance - laneDistance, transform.position.y, transform.position.z);
             }
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
@@ -43,17 +42,28 @@ public class PlayerMovement : MonoBehaviour
             if (currentLane > 0)
             {
                 currentLane--;
-                transform.position += new Vector3(-laneDistance, 0, 0);
+                targetPosition = new Vector3(currentLane * laneDistance - laneDistance, transform.position.y, transform.position.z);
             }
         }
         if (isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)))
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
+            Jump();
         }
     }
 
+    void MoveToTargetPosition()
+    {
+        transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, targetPosition.x, laneSwitchSpeed * Time.deltaTime), transform.position.y, transform.position.z);
+    }
+
+    void Jump()
+    {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        isGrounded = false;
+    }
+
     //https://stackoverflow.com/questions/65488572/how-do-i-limit-a-gameobject-to-jump-only-once
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))

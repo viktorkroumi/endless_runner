@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class FixedCamera : MonoBehaviour
 {
-    private float fixedX;
+    private float fixedCameraX;
 
     void Start()
     {
-        fixedX = transform.position.x;
+        fixedCameraX = transform.position.x;
     }
 
     
     void LateUpdate()
     {
-        transform.position = new Vector3(fixedX, transform.position.y, transform.position.z);
+        transform.position = new Vector3(fixedCameraX, transform.position.y, transform.position.z);
     }
 }

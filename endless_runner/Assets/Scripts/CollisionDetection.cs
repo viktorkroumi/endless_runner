@@ -10,10 +10,11 @@ public class CollisionDetection : MonoBehaviour
 
     void Start()
     {
-        coin.SetActive(true);
+        coinText.text = coinCount.ToString();
     }
 
     //https://discussions.unity.com/t/how-to-detect-collision-on-only-one-side-of-an-object-c/214851
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.name == "DeathCollider")
@@ -22,13 +23,10 @@ public class CollisionDetection : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider coin)
     {
-        if (coin)
-        {
-            coinCount++;
-            coinText.text = coinCount.ToString();
-            coin.SetActive(false);
-        }
+        coinCount++;            
+        coinText.text = coinCount.ToString();
+        Destroy(coin.gameObject);
     }
 }
