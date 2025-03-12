@@ -7,6 +7,6 @@ public class ShopCoins : MonoBehaviour
 
     void Update()
     {
-        shopCoins.text = CollisionDetection.coinCount.ToString();
+        shopCoins.text = "Coins: " + PlayerPrefs.GetFloat("Coins").ToString();
     }
 }
