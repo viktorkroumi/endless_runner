@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 37840845}
   - component: {fileID: 37840844}
   m_Layer: 5
-  m_Name: Skin 1
+  m_Name: Manequin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,8 +204,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1887426725}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BuySkin
-        m_Mode: 3
+        m_MethodName: SelectManequin
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1008,7 +1008,7 @@ GameObject:
   - component: {fileID: 640378686}
   - component: {fileID: 640378685}
   m_Layer: 5
-  m_Name: Skin 4
+  m_Name: Ninja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1080,8 +1080,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1887426725}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BuySkin
-        m_Mode: 3
+        m_MethodName: SelectNinja
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1220,7 +1220,7 @@ GameObject:
   - component: {fileID: 947821982}
   - component: {fileID: 947821981}
   m_Layer: 5
-  m_Name: Skin 3
+  m_Name: Mousey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1292,8 +1292,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1887426725}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BuySkin
-        m_Mode: 3
+        m_MethodName: SelectMousey
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1581,7 +1581,7 @@ GameObject:
   - component: {fileID: 1671591800}
   - component: {fileID: 1671591799}
   m_Layer: 5
-  m_Name: Skin 2
+  m_Name: Timmy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1653,8 +1653,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1887426725}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BuySkin
-        m_Mode: 3
+        m_MethodName: SelectTimmy
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1759,8 +1759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8645fc141530c3447b189a3f5ab10b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinPrices: 050000000a000000140000001e000000
-  coinText: {fileID: 101166338}
+  shopCoins: {fileID: 101166338}
 --- !u!1 &1916103203
 GameObject:
   m_ObjectHideFlags: 0

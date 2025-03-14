@@ -2,41 +2,27 @@ using UnityEngine;
 
 public class SkinManager : MonoBehaviour
 {
-    // Statická instance pro Singleton (to je ta jediná instance, která bude existovat)
-    public static SkinManager Instance;
+    public GameObject[] skins; // Pole všech skinù
 
-    // Pole pro modely skinù (GameObjecty, které reprezentují rùzné skiny)
-    public GameObject[] skins;
-
-    // Funkce, která se zavolá pøi inicializaci objektu (Awake je voláno ještì pøed Start)
-    private void Awake()
+    void Start()
     {
-        // Pokud už instance existuje, znièíme tuto instanci
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            // Pokud instance neexistuje, pøiøadíme tuto instanci a zachováme ji mezi scénami
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Tento objekt bude pøežít mezi scénami
-        }
+        SetSkin();
     }
 
-    // Metoda pro aktivaci skinu podle indexu
-    public void ActivateSkin(int skinIndex)
+    public void SetSkin()
     {
-        // Deaktivujeme všechny skiny
+        int selectedSkin = PlayerPrefs.GetInt("CSkin", 1); // Získání aktuálního skinu (výchozí = 1)
+
+        // Vypnutí všech skinù
         foreach (GameObject skin in skins)
         {
             skin.SetActive(false);
         }
 
-        // Aktivujeme konkrétní skin
-        if (skinIndex >= 0 && skinIndex < skins.Length)
+        // Aktivace vybraného skinu
+        if (selectedSkin > 0 && selectedSkin <= skins.Length)
         {
-            skins[skinIndex].SetActive(true);
+            skins[selectedSkin - 1].SetActive(true);
         }
     }
 }

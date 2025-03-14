@@ -3,51 +3,72 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    // Toto pole obsahuje indexy pro rùzné skiny
-    public int[] skinPrices;  // Ceny skinù
-    public TextMeshProUGUI coinText; // Zobrazení poètu mincí hráèe
+    public TextMeshProUGUI shopCoins;
+
+    private float coins;
+    private int currentSkin;
+
+    private int manequin;
+    private int timmy;
+    private int mousey;
+    private int ninja;
 
     void Start()
     {
-        // Inicializace UI pro poèet mincí
+        LoadData();
         UpdateCoinText();
     }
 
-    private void Update()
+    void Update()
     {
         UpdateCoinText();
     }
 
-    // Funkce pro nákup skinu
-    public void BuySkin(int skinIndex)
+    private void LoadData()
     {
-        // Získáme aktuální poèet mincí hráèe
-        float currentCoins = PlayerPrefs.GetFloat("Coins");
+        coins = PlayerPrefs.GetFloat("Coins", 0);
+        manequin = PlayerPrefs.GetInt("Manequin", 1); // První skin je zdarma
+        timmy = PlayerPrefs.GetInt("Timmy", 0);
+        mousey = PlayerPrefs.GetInt("Mousey", 0);
+        ninja = PlayerPrefs.GetInt("Ninja", 0);
+        currentSkin = PlayerPrefs.GetInt("CSkin", 1); // Výchozí skin
+    }
 
-        // Cena skinu
-        float skinPrice = skinPrices[skinIndex];
+    private void UpdateCoinText()
+    {
+        shopCoins.text = "Coins: " + coins.ToString();
+    }
 
-        // Pokud má hráè dostatek mincí
-        if (currentCoins >= skinPrice)
+    public void BuySkin(int skinIndex, int price, string skinName)
+    {
+        if (PlayerPrefs.GetInt(skinName, 0) == 1) // Skin je již zakoupen
         {
-            // Odeèteme cenu skinu
-            currentCoins -= skinPrice;
-            PlayerPrefs.SetFloat("Coins", currentCoins);
+            SetSkin(skinIndex);
+            return;
+        }
 
-            // Oznaèíme skin jako zakoupený v PlayerPrefs
-            PlayerPrefs.SetInt("Skin" + skinIndex, 1);
-
-            // Aktivujeme vybraný skin pomocí Singletonu
-            SkinManager.Instance.ActivateSkin(skinIndex);
-
-            // Aktualizujeme UI pro poèet mincí
-            UpdateCoinText();
+        if (coins >= price) // Hráè má dostatek mincí
+        {
+            coins -= price;
+            PlayerPrefs.SetFloat("Coins", coins);
+            PlayerPrefs.SetInt(skinName, 1);
+            SetSkin(skinIndex);
+        }
+        else
+        {
+            Debug.Log("Nedostatek mincí!");
         }
     }
 
-    // Metoda pro aktualizaci textu s poètem mincí
-    private void UpdateCoinText()
+    private void SetSkin(int skinIndex)
     {
-        coinText.text = "Coins: " + PlayerPrefs.GetFloat("Coins").ToString();
+        currentSkin = skinIndex;
+        PlayerPrefs.SetInt("CSkin", skinIndex);
+        PlayerPrefs.Save();
     }
+
+    public void SelectManequin() => BuySkin(1, 0, "Manequin"); // Zdarma
+    public void SelectTimmy() => BuySkin(2, 20, "Timmy");
+    public void SelectMousey() => BuySkin(3, 30, "Mousey");
+    public void SelectNinja() => BuySkin(4, 50, "Ninja");
 }
