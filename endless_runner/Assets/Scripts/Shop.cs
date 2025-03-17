@@ -4,10 +4,13 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     public TextMeshProUGUI shopCoins;
+    public TextMeshProUGUI manequintxt;
+    public TextMeshProUGUI timmytxt;
+    public TextMeshProUGUI mouseytxt;
+    public TextMeshProUGUI ninjatxt;
 
     private float coins;
     private int currentSkin;
-
     private int manequin;
     private int timmy;
     private int mousey;
@@ -15,6 +18,11 @@ public class Shop : MonoBehaviour
 
     void Start()
     {
+        manequintxt.text = "0";
+        timmytxt.text = "800";
+        mouseytxt.text = "1200";
+        ninjatxt.text = "2000";
+
         LoadData();
         UpdateCoinText();
     }
@@ -36,7 +44,7 @@ public class Shop : MonoBehaviour
 
     private void UpdateCoinText()
     {
-        shopCoins.text = "Coins: " + coins.ToString();
+        shopCoins.text = coins.ToString();
     }
 
     public void BuySkin(int skinIndex, int price, string skinName)
@@ -68,7 +76,7 @@ public class Shop : MonoBehaviour
     }
 
     public void SelectManequin() => BuySkin(1, 0, "Manequin"); // Zdarma
-    public void SelectTimmy() => BuySkin(2, 20, "Timmy");
-    public void SelectMousey() => BuySkin(3, 30, "Mousey");
-    public void SelectNinja() => BuySkin(4, 50, "Ninja");
+    public void SelectTimmy() => BuySkin(2, 800, "Timmy");
+    public void SelectMousey() => BuySkin(3, 1200, "Mousey");
+    public void SelectNinja() => BuySkin(4, 2000, "Ninja");
 }
