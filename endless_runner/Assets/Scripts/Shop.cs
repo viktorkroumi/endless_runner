@@ -18,11 +18,6 @@ public class Shop : MonoBehaviour
 
     void Start()
     {
-        manequintxt.text = "0";
-        timmytxt.text = "800";
-        mouseytxt.text = "1200";
-        ninjatxt.text = "2000";
-
         LoadData();
         UpdateCoinText();
     }
@@ -35,11 +30,12 @@ public class Shop : MonoBehaviour
     private void LoadData()
     {
         coins = PlayerPrefs.GetFloat("Coins", 0);
-        manequin = PlayerPrefs.GetInt("Manequin", 1); // První skin je zdarma
+        manequin = PlayerPrefs.GetInt("Manequin", 1);
         timmy = PlayerPrefs.GetInt("Timmy", 0);
         mousey = PlayerPrefs.GetInt("Mousey", 0);
         ninja = PlayerPrefs.GetInt("Ninja", 0);
-        currentSkin = PlayerPrefs.GetInt("CSkin", 1); // Výchozí skin
+        currentSkin = PlayerPrefs.GetInt("CSkin", 1);
+        UpdateSkinText();
     }
 
     private void UpdateCoinText()
@@ -47,15 +43,29 @@ public class Shop : MonoBehaviour
         shopCoins.text = coins.ToString();
     }
 
+    private void UpdateSkinText()
+    {
+        manequintxt.text = GetSkinStatus("Manequin", 1, 0);
+        timmytxt.text = GetSkinStatus("Timmy", 2, 1000);
+        mouseytxt.text = GetSkinStatus("Mousey", 3, 2000);
+        ninjatxt.text = GetSkinStatus("Ninja", 4, 3000);
+    }
+
+    private string GetSkinStatus(string skinName, int skinIndex, int price)
+    {
+        if (currentSkin == skinIndex) return "Equipped";
+        return PlayerPrefs.GetInt(skinName, 0) == 1 ? "Owned" : price.ToString();
+    }
+
     public void BuySkin(int skinIndex, int price, string skinName)
     {
-        if (PlayerPrefs.GetInt(skinName, 0) == 1) // Skin je již zakoupen
+        if (PlayerPrefs.GetInt(skinName, 0) == 1)
         {
             SetSkin(skinIndex);
             return;
         }
 
-        if (coins >= price) // Hráè má dostatek mincí
+        if (coins >= price)
         {
             coins -= price;
             PlayerPrefs.SetFloat("Coins", coins);
@@ -64,7 +74,7 @@ public class Shop : MonoBehaviour
         }
         else
         {
-            Debug.Log("Nedostatek mincí!");
+
         }
     }
 
@@ -73,10 +83,11 @@ public class Shop : MonoBehaviour
         currentSkin = skinIndex;
         PlayerPrefs.SetInt("CSkin", skinIndex);
         PlayerPrefs.Save();
+        UpdateSkinText();
     }
 
-    public void SelectManequin() => BuySkin(1, 0, "Manequin"); // Zdarma
-    public void SelectTimmy() => BuySkin(2, 800, "Timmy");
-    public void SelectMousey() => BuySkin(3, 1200, "Mousey");
-    public void SelectNinja() => BuySkin(4, 2000, "Ninja");
+    public void SelectManequin() => BuySkin(1, 0, "Manequin");
+    public void SelectTimmy() => BuySkin(2, 1000, "Timmy");
+    public void SelectMousey() => BuySkin(3, 2000, "Mousey");
+    public void SelectNinja() => BuySkin(4, 3000, "Ninja");
 }
