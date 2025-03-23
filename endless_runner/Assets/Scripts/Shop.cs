@@ -72,10 +72,6 @@ public class Shop : MonoBehaviour
             PlayerPrefs.SetInt(skinName, 1);
             SetSkin(skinIndex);
         }
-        else
-        {
-
-        }
     }
 
     private void SetSkin(int skinIndex)
@@ -87,7 +83,7 @@ public class Shop : MonoBehaviour
     }
 
     public void SelectManequin() => BuySkin(1, 0, "Manequin");
-    public void SelectTimmy() => BuySkin(2, 1000, "Timmy");
-    public void SelectMousey() => BuySkin(3, 2000, "Mousey");
-    public void SelectNinja() => BuySkin(4, 3000, "Ninja");
+    public void SelectTimmy() => BuySkin(2, 3000, "Timmy");
+    public void SelectMousey() => BuySkin(3, 5000, "Mousey");
+    public void SelectNinja() => BuySkin(4, 10000, "Ninja");
 }

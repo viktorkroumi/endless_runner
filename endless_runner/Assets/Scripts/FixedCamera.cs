@@ -2,16 +2,23 @@ using UnityEngine;
 
 public class FixedCamera : MonoBehaviour
 {
-    private float fixedCameraX;
+    public Transform player;
+    public float followStrength = 0.5f;
+    public float maxOffsetX = 1.5f;
+
+    private float startCameraX;
+    private float fixedCameraY;
 
     void Start()
     {
-        fixedCameraX = transform.position.x;
+        startCameraX = transform.position.x;
+        fixedCameraY = transform.position.y;
     }
 
-    
     void LateUpdate()
     {
-        transform.position = new Vector3(fixedCameraX, transform.position.y, transform.position.z);
+        float targetX = startCameraX + (player.position.x * followStrength);
+        targetX = Mathf.Clamp(targetX, startCameraX - maxOffsetX, startCameraX + maxOffsetX);
+        transform.position = new Vector3(targetX, fixedCameraY, transform.position.z);
     }
 }
