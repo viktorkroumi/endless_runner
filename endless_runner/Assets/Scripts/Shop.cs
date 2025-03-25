@@ -46,14 +46,18 @@ public class Shop : MonoBehaviour
     private void UpdateSkinText()
     {
         manequintxt.text = GetSkinStatus("Manequin", 1, 0);
-        timmytxt.text = GetSkinStatus("Timmy", 2, 1000);
-        mouseytxt.text = GetSkinStatus("Mousey", 3, 2000);
-        ninjatxt.text = GetSkinStatus("Ninja", 4, 3000);
+        timmytxt.text = GetSkinStatus("Timmy", 2, 3000);
+        mouseytxt.text = GetSkinStatus("Mousey", 3, 5000);
+        ninjatxt.text = GetSkinStatus("Ninja", 4, 10000);
     }
 
     private string GetSkinStatus(string skinName, int skinIndex, int price)
     {
-        if (currentSkin == skinIndex) return "Equipped";
+        if (currentSkin == skinIndex)
+        {
+            return "Equipped";
+        }
+
         return PlayerPrefs.GetInt(skinName, 0) == 1 ? "Owned" : price.ToString();
     }
 

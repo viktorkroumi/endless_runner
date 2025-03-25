@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MenuScore : MonoBehaviour
 {
-    public TextMeshProUGUI latestScore;
+    public TextMeshProUGUI currentScore;
     public TextMeshProUGUI highScore;
     public float score;
 
@@ -24,6 +24,6 @@ public class MenuScore : MonoBehaviour
         }
 
         highScore.text = "Highest score: " + PlayerPrefs.GetFloat("SavedHighScore").ToString();
-        latestScore.text = "Your score: " + score.ToString();
+        currentScore.text = "Your score: " + score.ToString();
     }
 }
