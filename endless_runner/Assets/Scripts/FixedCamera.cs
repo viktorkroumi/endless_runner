@@ -18,7 +18,7 @@ public class FixedCamera : MonoBehaviour
     void LateUpdate()
     {
         float targetX = startCameraX + (player.position.x * followStrength);
-        targetX = Mathf.Clamp(targetX, startCameraX - maxOffsetX, startCameraX + maxOffsetX);
+        targetX = Mathf.Clamp(targetX, startCameraX - maxOffsetX, startCameraX + maxOffsetX); /*ChatGPT*/
         transform.position = new Vector3(targetX, fixedCameraY, transform.position.z);
     }
 }

@@ -1777,7 +1777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 0
   player: {fileID: 1927482933}
-  scoreInGame: {fileID: 849710162}
+  currentScore: {fileID: 849710162}
 --- !u!114 &761820629
 MonoBehaviour:
   m_ObjectHideFlags: 0

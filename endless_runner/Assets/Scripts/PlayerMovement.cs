@@ -26,26 +26,11 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         speed += 0.1f * Time.deltaTime;
 
-        Move();
         MoveToTargetPosition();
         DetectSwipe();
     }
 
-    void Move() 
-    {
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-        {
-            MoveRight();
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-        {
-            MoveLeft();
-        }
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)))
-        {
-            Jump();
-        }
-    }
+    //https://discussions.unity.com/t/help-with-endless-runner-switching-lanes-solved/661810/4
 
     void MoveRight()
     {
@@ -73,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
+
+    //https://learn.unity.com/tutorial/touch-input-for-mobile-scripting#5fc28c65edbc2a0d25685a9e 
 
     void DetectSwipe()
     {
@@ -111,6 +98,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    //https://discussions.unity.com/t/smooth-lane-change/635379/2
 
     void MoveToTargetPosition()
     {

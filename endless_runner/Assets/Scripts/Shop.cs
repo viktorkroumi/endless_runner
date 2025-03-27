@@ -27,6 +27,8 @@ public class Shop : MonoBehaviour
         UpdateCoinText();
     }
 
+    //https://www.youtube.com/watch?v=sKZqqWGqdcc&t=37s
+
     private void LoadData()
     {
         coins = PlayerPrefs.GetFloat("Coins", 0);
@@ -50,6 +52,8 @@ public class Shop : MonoBehaviour
         mouseytxt.text = GetSkinStatus("Mousey", 3, 5000);
         ninjatxt.text = GetSkinStatus("Ninja", 4, 10000);
     }
+
+    //ChatGPT
 
     private string GetSkinStatus(string skinName, int skinIndex, int price)
     {

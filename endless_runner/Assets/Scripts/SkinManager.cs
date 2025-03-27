@@ -9,6 +9,8 @@ public class SkinManager : MonoBehaviour
         SetSkin();
     }
 
+    //ChatGPT
+
     public void SetSkin()
     {
         int selectedSkin = PlayerPrefs.GetInt("CSkin", 1);

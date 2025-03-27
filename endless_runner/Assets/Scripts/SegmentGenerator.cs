@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SegmentGenerator : MonoBehaviour
 {
+    //https://www.youtube.com/watch?v=rEn57zwzFGw&list=PLZ1b66Z1KFKiR-IVN688Jo0BbOh4aV6Dt&index=9
+
     public GameObject[] segment;
     private int zPosition = 50;
     private bool creatingSegment = false;

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class CoinRotate : MonoBehaviour
 {
-    public float rotateSpeed = 2;
+    //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Transform.Rotate.html
 
     void Update()
     {
-        transform.Rotate(0, rotateSpeed, 0, Space.World);
+        transform.Rotate(0, 2, 0, Space.World);
     }
 }
